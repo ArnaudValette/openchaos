@@ -16,3 +16,42 @@ body {
   background: var(--background);
   color: var(--foreground);
 }
+
+.emscripten{
+    animation: doom-float 3s ease-in-out infinite alternate,
+               doom-rotate 6s ease-in-out infinite alternate,
+               doom-breath 8s ease-in-out infinite alternate;
+}
+
+
+@keyframes doom-float {
+  0% {
+    transform: translate(-8px, -6px);
+  }
+  50% {
+    transform: translate(6px, -10px);
+  }
+  100% {
+    transform: translate(8px, 6px);
+  }
+}
+
+@keyframes doom-rotate {
+  0% {
+    rotate: -1.5deg;
+  }
+  50% {
+    rotate: 1deg;
+  }
+  100% {
+    rotate: -1deg;
+  }
+}
+@keyframes doom-breath {
+  0% {
+    scale: 1;
+  }
+  100% {
+    scale: 1.3;
+  }
+}

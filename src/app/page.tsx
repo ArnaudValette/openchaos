@@ -1,6 +1,7 @@
 import { Suspense } from "react";
 import { Countdown } from "@/components/Countdown";
 import { PRList } from "@/components/PRList";
+import {Doom} from "@/components/Doom";
 
 export default function Home() {
   return (
@@ -13,6 +14,7 @@ export default function Home() {
         <Countdown />
       </div>
 
+      <Doom/>
       <section className="mt-16 w-full flex flex-col items-center">
         <h2 className="text-xl font-medium text-zinc-600 mb-6">
           Open PRs — Vote to merge
