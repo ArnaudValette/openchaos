@@ -1,18 +1,35 @@
 import type { PullRequest } from "@/lib/github";
+import { TimeAgo } from "./TimeAgo";
 
 interface PRCardProps {
   pr: PullRequest;
   rank: number;
 }
 
+function chooseURL(url: string) {
+  // 10% chance to Rickroll
+  if (Math.random() <= 0.10) {
+    // Rick Astley - Never Gonna Give You Up (Official Video) (4K Remaster)
+    return "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
+  } else {
+    return url;
+  }
+}
+
 export function PRCard({ pr, rank }: PRCardProps) {
+  const url = chooseURL(pr.url);
+
+  const isSixtySeven = pr.votes === 67 || pr.votes === -67;
+  
   return (
     <table
       width="100%"
       border={2}
       cellPadding={8}
       cellSpacing={0}
-      className={`pr-card ${rank === 1 ? 'pr-card-leading' : 'pr-card-normal'}`}
+      className={`pr-card ${rank === 1 ? 'pr-card-leading' : 'pr-card-normal'}
+        ${isSixtySeven ? "sixseven-shake" : ""}
+      `}
     >
       <tbody>
         <tr>
@@ -48,14 +65,14 @@ export function PRCard({ pr, rank }: PRCardProps) {
                         className="pr-card-author-link"
                       >
                         <b>@{pr.author}</b>
-                      </a>
+                      </a> · <TimeAgo isoDate={pr.createdAt} />
                     </span>
                   </td>
                 </tr>
                 <tr>
                   <td className="pr-card-link-row">
                     <a
-                      href={pr.url}
+                      href={url}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="pr-card-link"
